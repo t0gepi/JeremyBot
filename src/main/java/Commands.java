@@ -12,7 +12,7 @@ public class Commands extends ListenerAdapter {
              builder.setTitle("Jeremy Fragrance");
              builder.setDescription("Businessman with 800k earnings per month\n" +
                                     "What's your favorite fragrance man?" );
-             builder.setImage("https://cdn.discordapp.com/attachments/1013928183864762431/1014630557604397076/jeremy1.jpg");
+             builder.setImage("https://github.com/t0gepi/JeremyBot/blob/master/src/main/resources/jeremy1.jpg");
 
              builder.setFooter("Created by Kalli");
              builder.setColor(0xf45642);
