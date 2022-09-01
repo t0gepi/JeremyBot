@@ -16,12 +16,10 @@ public class InfoCommand extends Command {
     public void handle(MessageReceivedEvent event, String... args) {
         if(args[0].equals(Main.prefix + "info")){
             EmbedBuilder builder = new EmbedBuilder();
-            builder.setTitle("Jeremy Fragrance");
-            builder.setDescription("Businessman with 800k earnings per month\n" +
-                    "What's your favorite fragrance man?" );
-            builder.setImage("https://github.com/t0gepi/JeremyBot/blob/master/src/main/resources/jeremy1.jpg");
+            builder.setTitle("This is my title");
+            builder.setDescription("This is a test description" );
 
-            builder.setFooter("Created by Kalli");
+            builder.setFooter("Created by t0gepi");
             builder.setColor(0xf45642);
 
 
