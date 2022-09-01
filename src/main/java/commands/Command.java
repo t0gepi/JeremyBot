@@ -4,8 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
-public abstract class Command {
-
+public abstract class Command{
     private String name;
     private Set<String> aliases;
 
@@ -27,6 +26,6 @@ public abstract class Command {
         return name;
     }
 
-    public abstract void handle(MessageReceivedEvent event, String... args);
+    public abstract void handle(MessageReceivedEvent event, String... params);
 
 }

@@ -37,19 +37,19 @@ public class CommandManager extends ListenerAdapter {
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         String[] msg = event.getMessage().getContentRaw().split(" ");
         String prefix = ResourceManager.getProperty("command.prefix");
-        String[] args = null;
+        String[] params = null;
         if(!msg[0].startsWith(prefix)){
             return;
         }
         if(msg.length > 1){
-            args = Arrays.copyOfRange(msg,1,msg.length);
+            params = Arrays.copyOfRange(msg,1,msg.length);
         }
         Iterator<Command> iterator = commands.iterator();
         Command command;
         while(iterator.hasNext()){
             command = iterator.next();
             if(command.getAliases().stream().anyMatch(alias -> msg[0].equalsIgnoreCase(prefix + alias))){
-                command.handle(event, args);
+                command.handle(event, params);
                 return;
             }
         }
