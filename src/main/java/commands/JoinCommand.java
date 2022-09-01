@@ -1,14 +1,16 @@
 package commands;
 
-import lavaplayer.PlayerManager;
+import net.dv8tion.jda.api.entities.AudioChannel;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.managers.AudioManager;
+import net.dv8tion.jda.api.managers.channel.middleman.AudioChannelManager;
 
-public class PlayCommand extends Command{
+public class JoinCommand extends Command{
 
-    public PlayCommand(String name) {
+    public JoinCommand(String name) {
         super(name);
     }
 
@@ -18,20 +20,23 @@ public class PlayCommand extends Command{
         final Member self = event.getGuild().getMember(event.getJDA().getSelfUser());
         final GuildVoiceState selfVoiceState = self.getVoiceState();
 
-        if(!selfVoiceState.inAudioChannel()){
-            textChannel.sendMessage("Bot needs to be in voice channel for this command");
+        if(selfVoiceState.inAudioChannel()){
+            textChannel.sendMessage("I'm already in a voice channel").queue();
             return;
         }
+
         final Member member = event.getMember();
         final GuildVoiceState memberVoiceState = member.getVoiceState();
+
         if(!memberVoiceState.inAudioChannel()){
-            textChannel.sendMessage("You need to be in voice channel for this command");
+            textChannel.sendMessage("You need to be in a voice channel for this command");
             return;
         }
-        if(!memberVoiceState.getChannel().equals(selfVoiceState.getChannel())){
-            textChannel.sendMessage("You need to be in the same voice channel as me");
-            return;
-        }
-        PlayerManager.getInstance().loadAndPlay(textChannel,"https://www.youtube.com/watch?v=lKjw3oWrMrI");
+
+        final AudioManager audioManager = event.getGuild().getAudioManager();
+        final AudioChannel audioChannel = memberVoiceState.getChannel();
+        audioManager.openAudioConnection(audioChannel);
+        textChannel.sendMessageFormat("Connecting to `\uD83D\uDD0A %s`", audioChannel.getName()).queue();
+
     }
 }

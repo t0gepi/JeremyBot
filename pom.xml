@@ -29,13 +29,6 @@
             <version>5.0.0-alpha.18</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.sedmelluq/lavaplayer -->
-        <dependency>
-            <groupId>com.sedmelluq</groupId>
-            <artifactId>lavaplayer</artifactId>
-            <version>1.3.50</version>
-        </dependency>
-
         <dependency>
             <groupId>com.github.johnnyjayjay</groupId>
             <artifactId>CommandAPI</artifactId>
@@ -43,11 +36,12 @@
         </dependency>
 
         <dependency>
-            <groupId>com.github.princesslana</groupId>
-            <artifactId>ErisCasper.java</artifactId>
-            <version>0.1.2</version>
+            <groupId>com.sedmelluq</groupId>
+            <artifactId>lavaplayer</artifactId>
+            <version>1.3.77</version>
         </dependency>
-        <!-- Thanks for using https://jar-download.com -->
+
+
 
     </dependencies>
 </project>
