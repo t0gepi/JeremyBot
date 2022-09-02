@@ -19,19 +19,22 @@ public class PlayCommand extends Command{
         final GuildVoiceState selfVoiceState = self.getVoiceState();
 
         if(!selfVoiceState.inAudioChannel()){
-            textChannel.sendMessage("Bot needs to be in voice channel for this command");
+            textChannel.sendMessage("Bot needs to be in voice channel for this command").queue();
             return;
         }
         final Member member = event.getMember();
         final GuildVoiceState memberVoiceState = member.getVoiceState();
         if(!memberVoiceState.inAudioChannel()){
-            textChannel.sendMessage("You need to be in voice channel for this command");
+            textChannel.sendMessage("You need to be in voice channel for this command").queue();
             return;
         }
         if(!memberVoiceState.getChannel().equals(selfVoiceState.getChannel())){
-            textChannel.sendMessage("You need to be in the same voice channel as me");
+            textChannel.sendMessage("You need to be in the same voice channel as me").queue();
             return;
         }
-        PlayerManager.getInstance().loadAndPlay(textChannel,"https://www.youtube.com/watch?v=lKjw3oWrMrI");
+        if(params.length == 1){
+            PlayerManager.getInstance().loadAndPlay(textChannel, params[0]);
+        }
+
     }
 }

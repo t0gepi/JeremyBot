@@ -35,9 +35,10 @@ public class CommandManager extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
+        System.out.println(event.getMessage().getContentRaw());
         String[] msg = event.getMessage().getContentRaw().split(" ");
         String prefix = ResourceManager.getProperty("command.prefix");
-        String[] params = null;
+        String[] params = new String[0];
         if(!msg[0].startsWith(prefix)){
             return;
         }
