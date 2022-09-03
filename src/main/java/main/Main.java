@@ -1,14 +1,15 @@
 package main;
 
-import commands.ClearCommand;
-import commands.CommandManager;
-import commands.InfoCommand;
-import commands.JoinCommand;
-import commands.PauseCommand;
-import commands.PlayCommand;
-import commands.ResumeCommand;
-import commands.SkipCommand;
-import commands.StopCommand;
+import command.jeremy.TalkCommand;
+import command.misc.ClearCommand;
+import command.CommandManager;
+import command.misc.InfoCommand;
+import command.music.JoinCommand;
+import command.music.PauseCommand;
+import command.music.PlayCommand;
+import command.music.ResumeCommand;
+import command.music.SkipCommand;
+import command.music.StopCommand;
 import javax.security.auth.login.LoginException;
 import misc.ResourceManager;
 import net.dv8tion.jda.api.JDA;
@@ -42,6 +43,7 @@ public class Main {
         commandManager.addCommand(new ResumeCommand("resume"));
         commandManager.addCommand(new SkipCommand("skip"));
         commandManager.addCommand(new ClearCommand("clear"));
+        commandManager.addCommand(new TalkCommand("talk"));
         jda.addEventListener(commandManager);
     }
 }

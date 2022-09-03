@@ -1,5 +1,6 @@
-package commands;
+package command.music;
 
+import command.Command;
 import lavaplayer.PlayerManager;
 import lavaplayer.TrackScheduler;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
@@ -7,8 +8,8 @@ import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
-public class ResumeCommand extends Command{
-    public ResumeCommand(String name) {
+public class SkipCommand extends Command {
+    public SkipCommand(String name) {
         super(name);
     }
 
@@ -21,12 +22,12 @@ public class ResumeCommand extends Command{
             TrackScheduler scheduler = PlayerManager.getInstance()
                     .getMusicManager(event.getGuild())
                     .getScheduler();
-            if(scheduler.isPaused()){
-                scheduler.resume();
-                textChannel.sendMessage("resuming").queue();
+            if(scheduler.isPlaying() || scheduler.isPaused()){
+                scheduler.nextTrack();
+                textChannel.sendMessage("skipping...").queue();
             }
             else{
-                textChannel.sendMessage("I am not paused currently. Moron").queue();
+                textChannel.sendMessage("I am not playing currently. Moron").queue();
             }
         }
     }

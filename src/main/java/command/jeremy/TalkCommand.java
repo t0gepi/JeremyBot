@@ -1,16 +1,18 @@
-package commands;
+package command.jeremy;
 
+import command.Command;
+import lavaplayer.PlayerManager;
+import misc.ResourceManager;
 import net.dv8tion.jda.api.entities.AudioChannel;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.managers.AudioManager;
-import net.dv8tion.jda.api.managers.channel.middleman.AudioChannelManager;
 
-public class JoinCommand extends Command{
+public class TalkCommand extends Command {
 
-    public JoinCommand(String name) {
+    public TalkCommand(String name) {
         super(name);
     }
 
@@ -21,8 +23,10 @@ public class JoinCommand extends Command{
         final GuildVoiceState selfVoiceState = self.getVoiceState();
 
         if(selfVoiceState.inAudioChannel()){
-            textChannel.sendMessage("I'm already in a voice channel").queue();
-            return;
+            if(selfVoiceState.getChannel().getMembers().size() > 1){
+                textChannel.sendMessage("I'm already in a voice channel").queue();
+                return;
+            }
         }
 
         final Member member = event.getMember();
@@ -37,6 +41,10 @@ public class JoinCommand extends Command{
         final AudioChannel audioChannel = memberVoiceState.getChannel();
         audioManager.openAudioConnection(audioChannel);
         textChannel.sendMessageFormat("Connecting to `\uD83D\uDD0A %s`", audioChannel.getName()).queue();
+
+        String randomSound = ResourceManager.randomSound();
+        System.out.println(randomSound);
+        PlayerManager.getInstance().loadAndPlay(textChannel, ResourceManager.randomSound());
 
     }
 }

@@ -1,5 +1,6 @@
-package commands;
+package command.music;
 
+import command.Command;
 import lavaplayer.PlayerManager;
 import lavaplayer.TrackScheduler;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
@@ -7,7 +8,7 @@ import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
-public class StopCommand extends Command{
+public class StopCommand extends Command {
 
     public StopCommand(String name) {
         super(name);

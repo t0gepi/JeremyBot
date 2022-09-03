@@ -1,12 +1,13 @@
-package commands;
+package command.music;
 
+import command.Command;
 import lavaplayer.PlayerManager;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
-public class PlayCommand extends Command{
+public class PlayCommand extends Command {
 
     public PlayCommand(String name) {
         super(name);

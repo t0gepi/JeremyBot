@@ -1,4 +1,4 @@
-package commands;
+package command;
 
 import java.util.Arrays;
 import java.util.HashSet;

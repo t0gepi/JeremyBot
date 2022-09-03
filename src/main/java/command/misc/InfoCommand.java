@@ -1,5 +1,6 @@
-package commands;
+package command.misc;
 
+import command.Command;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 

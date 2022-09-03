@@ -1,11 +1,13 @@
-package commands;
+package command.misc;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import command.Command;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
-public class ClearCommand extends Command{
+public class ClearCommand extends Command {
 
     public ClearCommand(String name) {
         super(name);
