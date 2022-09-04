@@ -14,6 +14,7 @@ command\music\StopCommand.class
 command\music\SkipCommand.class
 command\misc\ClearCommand.class
 command\music\PlayCommand.class
+command\misc\HelpCommand.class
 command\jeremy\TalkCommand.class
 command\jeremy\KickCommand.class
 command\misc\InfoCommand.class
