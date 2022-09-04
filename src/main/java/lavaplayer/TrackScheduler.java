@@ -37,7 +37,9 @@ public class TrackScheduler extends AudioEventAdapter {
 
     @Override
     public void onTrackEnd(AudioPlayer player, AudioTrack track, AudioTrackEndReason endReason) {
-        super.onTrackEnd(player, track, endReason);
+        if(endReason.mayStartNext){
+            nextTrack();
+        }
     }
 
     public void pause() {
