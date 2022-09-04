@@ -18,10 +18,12 @@ import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Main {
     public static JDA jda;
-
+    private static Logger LOGGER = LoggerFactory.getLogger(Main.class);
     public static void main(String[] args) throws LoginException {
         ResourceManager.init();
         jda = JDABuilder.createDefault(ResourceManager.getProperty("discord.bottoken"))
@@ -45,5 +47,6 @@ public class Main {
         commandManager.addCommand(new ClearCommand("clear"));
         commandManager.addCommand(new TalkCommand("talk"));
         jda.addEventListener(commandManager);
+        LOGGER.info("{}: everything loaded", Main.class.getSimpleName());
     }
 }

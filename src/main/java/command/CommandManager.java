@@ -1,18 +1,18 @@
 package command;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Optional;
-import java.util.Set;
 import misc.ResourceManager;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.*;
 
 
 public class CommandManager extends ListenerAdapter {
+    private static final Logger LOGGER = LoggerFactory.getLogger(CommandManager.class);
 
     private Set<Command> commands;
 
@@ -30,7 +30,7 @@ public class CommandManager extends ListenerAdapter {
 
     @Override
     public void onReady(@NotNull ReadyEvent event) {
-        //TODO: some logging
+        LOGGER.info("{} is Ready", event.getJDA().getSelfUser().getAsTag());
     }
 
     @Override

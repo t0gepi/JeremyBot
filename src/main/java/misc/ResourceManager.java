@@ -4,8 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Properties;
-import java.util.Random;
+import java.util.*;
 
 import org.jetbrains.annotations.NonNls;
 
@@ -34,9 +33,15 @@ public final class ResourceManager {
     }
 
     public static String randomSound(){
-        File folder = new File(RESOURCE_DIR + "/sounds/");
+
+        List<File> result = new ArrayList<>();
+        File folder = new File(RESOURCE_DIR + "/sounds/jeremy/english/");
         File[] listOfFiles = folder.listFiles();
-        return listOfFiles[new Random().nextInt(listOfFiles.length)].getAbsolutePath();
+        File folder2 = new File(RESOURCE_DIR + "/sounds/jeremy/german/");
+        File[] listOfFiles2 = folder2.listFiles();
+        Collections.addAll(result,listOfFiles);
+        Collections.addAll(result,listOfFiles2);
+        return result.get(new Random().nextInt(result.size())).getAbsolutePath();
     }
 
 }

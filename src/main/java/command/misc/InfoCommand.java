@@ -16,6 +16,7 @@ public class InfoCommand extends Command {
         builder.setTitle("Jeremy Fragrance");
         builder.setDescription("Businessman with 800k earnings per month\n" +
                 "What's your favorite fragrance man?" );
+        builder.setImage("attachment://jeremy.png");
         builder.setFooter("Created by Kalli");
         builder.setColor(0xf45642);
         event.getChannel().sendTyping().queue();

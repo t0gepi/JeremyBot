@@ -22,13 +22,6 @@ public class TalkCommand extends Command {
         final Member self = event.getGuild().getMember(event.getJDA().getSelfUser());
         final GuildVoiceState selfVoiceState = self.getVoiceState();
 
-        if(selfVoiceState.inAudioChannel()){
-            if(selfVoiceState.getChannel().getMembers().size() > 1){
-                textChannel.sendMessage("I'm already in a voice channel").queue();
-                return;
-            }
-        }
-
         final Member member = event.getMember();
         final GuildVoiceState memberVoiceState = member.getVoiceState();
 
@@ -37,14 +30,25 @@ public class TalkCommand extends Command {
             return;
         }
 
-        final AudioManager audioManager = event.getGuild().getAudioManager();
-        final AudioChannel audioChannel = memberVoiceState.getChannel();
-        audioManager.openAudioConnection(audioChannel);
-        textChannel.sendMessageFormat("Connecting to `\uD83D\uDD0A %s`", audioChannel.getName()).queue();
+        if(selfVoiceState.inAudioChannel()){
+            if(selfVoiceState.getChannel().getMembers().size() > 1){
+                if(!selfVoiceState.getChannel().getMembers().contains(member)){
+                    textChannel.sendMessage("I'm already in a voice channel").queue();
+                    return;
+                }
+
+            }
+        }
+        else{
+            final AudioManager audioManager = event.getGuild().getAudioManager();
+            final AudioChannel audioChannel = memberVoiceState.getChannel();
+            audioManager.openAudioConnection(audioChannel);
+            textChannel.sendMessageFormat("Connecting to `\uD83D\uDD0A %s`", audioChannel.getName()).queue();
+        }
 
         String randomSound = ResourceManager.randomSound();
         System.out.println(randomSound);
         PlayerManager.getInstance().loadAndPlay(textChannel, ResourceManager.randomSound());
-
+        
     }
 }
