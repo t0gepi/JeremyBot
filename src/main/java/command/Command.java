@@ -1,8 +1,9 @@
 package command;
 
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+
 import java.util.HashSet;
 import java.util.Set;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public abstract class Command{
     private String name;

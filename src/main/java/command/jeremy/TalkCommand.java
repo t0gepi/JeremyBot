@@ -38,6 +38,12 @@ public class TalkCommand extends Command {
                 }
 
             }
+            else{
+                final AudioManager audioManager = event.getGuild().getAudioManager();
+                final AudioChannel audioChannel = memberVoiceState.getChannel();
+                audioManager.openAudioConnection(audioChannel);
+                textChannel.sendMessageFormat("Connecting to `\uD83D\uDD0A %s`", audioChannel.getName()).queue();
+            }
         }
         else{
             final AudioManager audioManager = event.getGuild().getAudioManager();
@@ -49,6 +55,6 @@ public class TalkCommand extends Command {
         String randomSound = ResourceManager.randomSound();
         System.out.println(randomSound);
         PlayerManager.getInstance().loadAndPlay(textChannel, ResourceManager.randomSound());
-        
+
     }
 }

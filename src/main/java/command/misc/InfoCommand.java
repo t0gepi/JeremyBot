@@ -1,8 +1,12 @@
 package command.misc;
 
 import command.Command;
-import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.utils.FileUpload;
+import net.dv8tion.jda.api.utils.messages.MessageCreateBuilder;
+
+import java.io.File;
 
 public class InfoCommand extends Command {
 
@@ -12,15 +16,10 @@ public class InfoCommand extends Command {
 
     @Override
     public void handle(MessageReceivedEvent event, String... params) {
-        EmbedBuilder builder = new EmbedBuilder();
-        builder.setTitle("Jeremy Fragrance");
-        builder.setDescription("Businessman with 800k earnings per month\n" +
-                "What's your favorite fragrance man?" );
-        builder.setImage("attachment://jeremy.png");
-        builder.setFooter("Created by Kalli");
-        builder.setColor(0xf45642);
-        event.getChannel().sendTyping().queue();
-        event.getChannel().sendMessageEmbeds(builder.build()).queue();
+        TextChannel channel = event.getChannel().asTextChannel();
+        MessageCreateBuilder builder = new MessageCreateBuilder();
+        builder.addFiles(FileUpload.fromData(new File("jeremy.png")));
+        channel.sendMessage(builder.build()).queue();
     }
 
 
